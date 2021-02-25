@@ -89,7 +89,7 @@ def print_log(*args):
     print("LOG: " + full_statement)
 
     # Every time a line is added to the log, it is copied to s3
-    upload_log()
+   # upload_log()
 
 
 # Logs fatal errors to the log txt, uploads to s3, and then terminates the program with an exception in the console

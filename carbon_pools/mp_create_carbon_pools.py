@@ -91,6 +91,9 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
         # Adds the correct AGB tiles to the download dictionary depending on the model run
         if sensit_type == 'biomass_swap':
             download_dict[cn.JPL_processed_dir] = [cn.pattern_JPL_unmasked_processed]
+        elif sensit_type == 'cci_swap':
+            download_dict[cn.CCI_processed_dir] = [cn.pattern_CCI_unmasked_processed]
+
         else:
             download_dict[cn.WHRC_biomass_2000_unmasked_dir] = [cn.pattern_WHRC_biomass_2000_unmasked]
 
@@ -129,6 +132,8 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
         # Adds the correct AGB tiles to the download dictionary depending on the model run
         if sensit_type == 'biomass_swap':
             download_dict[cn.JPL_processed_dir] = [cn.pattern_JPL_unmasked_processed]
+        elif sensit_type == 'cci_swap':
+            download_dict[cn.CCI_processed_dir] = [cn.pattern_CCI_unmasked_processed]
         else:
             download_dict[cn.WHRC_biomass_2000_unmasked_dir] = [cn.pattern_WHRC_biomass_2000_unmasked]
 
@@ -193,7 +198,7 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
     if cn.count == 96:
         # More processors can be used for loss carbon pools than for 2000 carbon pools
         if carbon_pool_extent == 'loss':
-            if sensit_type == 'biomass_swap':
+            if sensit_type == 'biomass_swap' and sensit_type == 'cci_swap':
                 processes = 16  # 16 processors = XXX GB peak
             else:
                 processes = 20  # 25 processors > 750 GB peak; 16 = 560 GB peak;
@@ -236,7 +241,7 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
     if cn.count == 96:
         # More processors can be used for loss carbon pools than for 2000 carbon pools
         if carbon_pool_extent == 'loss':
-            if sensit_type == 'biomass_swap':
+            if sensit_type == 'biomass_swap' and sensit_type == 'cci_swap':
                 processes = 30  # 30 processors = XXX GB peak
             else:
                 processes = 38  # 20 processors = 370 GB peak; 32 = 590 GB peak; 36 = 670 GB peak; 38 = 700 GB peak
@@ -288,7 +293,7 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
     if cn.count == 96:
         # More processors can be used for loss carbon pools than for 2000 carbon pools
         if carbon_pool_extent == 'loss':
-            if sensit_type == 'biomass_swap':
+            if sensit_type == 'biomass_swap' and sensit_type == 'cci_swap' :
                 processes = 10  # 10 processors = XXX GB peak
             else:
                 processes = 14  # 32 processors = >750 GB peak; 24 > 750 GB peak; 14 = 650 GB peak; 15 = 700 GB peak
@@ -353,7 +358,7 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
         if cn.count == 96:
             # More processors can be used for loss carbon pools than for 2000 carbon pools
             if carbon_pool_extent == 'loss':
-                if sensit_type == 'biomass_swap':
+                if sensit_type == 'biomass_swap' and sensit_type == 'cci_swap' :
                     processes = 36  # 36 processors = XXX GB peak
                 else:
                     processes = 42  # 24 processors = 360 GB peak; 32 = 490 GB peak; 38 = 580 GB peak; 42 = XXX GB peak
@@ -407,7 +412,7 @@ def mp_create_carbon_pools(sensit_type, tile_id_list, carbon_pool_extent, run_da
     if cn.count == 96:
         # More processors can be used for loss carbon pools than for 2000 carbon pools
         if carbon_pool_extent == 'loss':
-            if sensit_type == 'biomass_swap':
+            if sensit_type == 'biomass_swap' and sensit_type == 'cci_swap':
                 processes = 14  # 14 processors = XXX GB peak
             else:
                 processes = 18  # 20 processors > 750 GB peak (by just a bit, I think); 15 = 550 GB peak; 18 = XXX GB peak

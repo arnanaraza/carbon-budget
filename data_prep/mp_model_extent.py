@@ -31,6 +31,8 @@ def mp_model_extent(sensit_type, tile_id_list, run_date = None):
         # List of tiles to run in the model. Which biomass tiles to use depends on sensitivity analysis
         if sensit_type == 'biomass_swap':
             tile_id_list = uu.tile_list_s3(cn.JPL_processed_dir, sensit_type)
+        elif sensit_type == 'cci_swap':
+            tile_id_list = uu.tile_list_s3(cn.CCI_processed_dir, sensit_type, cn.tcd_dir1)
         elif sensit_type == 'legal_Amazon_loss':
             tile_id_list = uu.tile_list_s3(cn.Brazil_forest_extent_2000_processed_dir, sensit_type)
         else:
@@ -57,6 +59,8 @@ def mp_model_extent(sensit_type, tile_id_list, run_date = None):
 
     if sensit_type == 'biomass_swap':
         download_dict[cn.JPL_processed_dir] = [cn.pattern_JPL_unmasked_processed]
+    elif sensit_type == 'cci_swap':
+        download_dict[cn.CCI_processed_dir] = [cn.pattern_CCI_unmasked_processed]
     else:
         download_dict[cn.WHRC_biomass_2000_unmasked_dir] = [cn.pattern_WHRC_biomass_2000_unmasked]
 
@@ -89,7 +93,7 @@ def mp_model_extent(sensit_type, tile_id_list, run_date = None):
     # This configuration of the multiprocessing call is necessary for passing multiple arguments to the main function
     # It is based on the example here: http://spencerimp.blogspot.com/2015/12/python-multiprocess-with-multiple.html
     if cn.count == 96:
-        if sensit_type == 'biomass_swap':
+        if sensit_type == 'biomass_swap' and sensit_type == 'cci_swap':
             processes = 38
         else:
             processes = 42 # 30 processors = 480 GB peak (sporadic decreases followed by sustained increases);

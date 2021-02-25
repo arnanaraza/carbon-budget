@@ -28,6 +28,9 @@ def model_extent(tile_id, pattern, sensit_type):
     if sensit_type == 'legal_Amazon_loss':
         tcd = '{0}_{1}.tif'.format(tile_id, cn.pattern_Brazil_forest_extent_2000_processed)
         uu.print_log("Using PRODES extent 2000 tile {0} for {1} sensitivity analysis".format(tile_id, sensit_type))
+    elif sensit_type == 'cci_swap':
+        tcd = '{0}_{1}.tif'.format(cn.pattern_tcd, tile_id)
+        uu.print_log("Using Hansen tcd extent 2010 tile {0} for {1} sensitivity analysis".format(tile_id, sensit_type))
     else:
         tcd = '{0}_{1}.tif'.format(cn.pattern_tcd, tile_id)
         uu.print_log("Using Hansen tcd tile {0} for {1} model run".format(tile_id, sensit_type))
@@ -36,6 +39,11 @@ def model_extent(tile_id, pattern, sensit_type):
     if sensit_type == 'biomass_swap':
         biomass = '{0}_{1}.tif'.format(tile_id, cn.pattern_JPL_unmasked_processed)
         uu.print_log("Using JPL biomass tile {0} for {1} sensitivity analysis".format(tile_id, sensit_type))
+
+    elif sensit_type == 'cci_swap':
+        biomass = '{0}_{1}.tif'.format(tile_id, cn.pattern_CCI_unmasked_processed)
+        uu.print_log("Using CCI Biomass tile {0} for {1} sensitivity analysis".format(tile_id, sensit_type))
+
     else:
         biomass = '{0}_{1}.tif'.format(tile_id, cn.pattern_WHRC_biomass_2000_unmasked)
         uu.print_log("Using WHRC biomass tile {0} for {1} model run".format(tile_id, sensit_type))
@@ -95,6 +103,9 @@ def model_extent(tile_id, pattern, sensit_type):
         if sensit_type == 'biomass_swap':
             dst.update_tags(
                 source='Pixels with ((Hansen 2000 tree cover AND NASA JPL AGB2000) OR Hansen gain OR mangrove biomass 2000) NOT pre-2000 plantations')
+        elif sensit_type == 'cci_swap':
+            dst.update_tags(
+                source='Pixels with ((Hansen 2010 tree cover AND CCI AGB2010) OR Hansen gain OR mangrove biomass 2000) NOT pre-2000 plantations')
         else:
             dst.update_tags(
                 source='Pixels with ((Hansen 2000 tree cover AND WHRC AGB2000) OR Hansen gain OR mangrove biomass 2000) NOT pre-2000 plantations')
