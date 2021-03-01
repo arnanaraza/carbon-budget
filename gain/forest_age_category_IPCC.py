@@ -39,6 +39,10 @@ def forest_age_category(tile_id, gain_table_dict, pattern, sensit_type):
     if sensit_type == 'biomass_swap':
         biomass = '{0}_{1}.tif'.format(tile_id, cn.pattern_JPL_unmasked_processed)
         uu.print_log("Using JPL biomass tile for {} sensitivity analysis".format(sensit_type))
+
+    elif  sensit_type == 'cci_swap':
+        biomass = '{0}_{1}.tif'.format(tile_id, cn.pattern_CCI_unmasked_processed)
+        uu.print_log("Using CCI biomass tile for {} sensitivity analysis".format(sensit_type))
     else:
         biomass = '{0}_{1}.tif'.format(tile_id, cn.pattern_WHRC_biomass_2000_unmasked)
         uu.print_log("Using WHRC biomass tile for {} sensitivity analysis".format(sensit_type))
